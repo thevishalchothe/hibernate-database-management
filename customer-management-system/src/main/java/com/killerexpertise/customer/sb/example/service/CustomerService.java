@@ -1,7 +1,6 @@
 package com.killerexpertise.customer.sb.example.service;
 
 import com.killerexpertise.customer.sb.example.model.Customer;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
