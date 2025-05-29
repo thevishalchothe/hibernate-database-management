@@ -1,6 +1,7 @@
 # User Management System Example ⚙️📂
 
-This project example is a console-based Java application for managing user records using Hibernate ORM and MySQL database.
+This project example is a console-based Java application for managing user records using:
+  -  Hibernate ORM (Object-Relational Mapping), MySQL database, and  Manual JAR dependency management (without Maven).
 
 ---
 
