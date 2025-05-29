@@ -7,11 +7,14 @@ A collection of Hibernate-based examples demonstrating database configuration, e
 
 ## 📂 Project Example List with Links 🔗
 
-- **user-management-system**:  [ with Manual JAR Setup (Without Maven) Example](https://github.com/thevishalchothe/hibernate-database-management/tree/58d0f70e4314cec980ba3969b9417f556c6e30d9/user-management-system) 
-  - Basic  console-based CRUD operations using Hibernate with XML configuration and manual setup (no Spring Data JPA or Maven).
+- **user-management-system**:  [Manual JAR Setup (Without Maven) Example](https://github.com/thevishalchothe/hibernate-database-management/tree/58d0f70e4314cec980ba3969b9417f556c6e30d9/user-management-system) 
+  - Basic  console-based CRUD operations using Hibernate with XML configuration and manual setup (without Maven).
 
-- **bank-management-system**:  [with Maven for dependency management Example](https://github.com/thevishalchothe/hibernate-database-management/tree/f33175a8648787c0cef4596e26c4b72270acb8fc/bank-management-system) 
+- **bank-management-system**:  [Maven for dependency management Example](https://github.com/thevishalchothe/hibernate-database-management/tree/f33175a8648787c0cef4596e26c4b72270acb8fc/bank-management-system) 
   -  This project example is a console-based Bank Management System implemented in Java for managing user records using Hibernate ORM, MySQL as the backend database, and Maven for JAR dependency management.
+
+- **customer-management-system**: [Spring Boot with Manual Hibernate Integration Example](https://github.com/thevishalchothe/hibernate-database-management/tree/0a11d302e45fb169daac1a0fa9f88099d42b4dbe/customer-management-system)  
+   - This is a Spring Boot application for managing customers using **manual Hibernate integration** (without Spring Data JPA). It demonstrates manual Hibernate configuration, managing `SessionFactory`, and building a RESTful API with CRUD operations.
 
 
 ---
