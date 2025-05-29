@@ -7,8 +7,11 @@ A collection of Hibernate-based examples demonstrating database configuration, e
 
 ## 📂 Project Example List with Links 🔗
 
-- **user-management-system**: [Manual JAR Setup (Without Maven) Example](https://github.com/thevishalchothe/hibernate-database-management/tree/58d0f70e4314cec980ba3969b9417f556c6e30d9/user-management-system): Basic CRUD operations using Hibernate with XML configuration and manual setup (no Spring Data JPA or Maven).
+- **user-management-system**:  [ with Manual JAR Setup (Without Maven) Example](https://github.com/thevishalchothe/hibernate-database-management/tree/58d0f70e4314cec980ba3969b9417f556c6e30d9/user-management-system) 
+  - Basic  console-based CRUD operations using Hibernate with XML configuration and manual setup (no Spring Data JPA or Maven).
 
+- **bank-management-system**:  [with Maven for dependency management Example](https://github.com/thevishalchothe/hibernate-database-management/tree/f33175a8648787c0cef4596e26c4b72270acb8fc/bank-management-system) 
+  -  This project example is a console-based Bank Management System implemented in Java for managing user records using Hibernate ORM, MySQL as the backend database, and Maven for JAR dependency management.
 
 
 ---
