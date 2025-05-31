@@ -2,7 +2,6 @@
 
 A collection of Hibernate-based examples demonstrating database configuration, entity mapping, and CRUD operations using both XML and annotation-based approaches.
 
-
 ---
 
 ## 📂 Project Example List with Links 🔗
@@ -15,6 +14,9 @@ A collection of Hibernate-based examples demonstrating database configuration, e
 
 - **customer-management-system**: [Spring Boot with Manual Hibernate Integration Example](https://github.com/thevishalchothe/hibernate-database-management/tree/0a11d302e45fb169daac1a0fa9f88099d42b4dbe/customer-management-system)  
    - This is a Spring Boot application for managing customers using **manual Hibernate integration** (without Spring Data JPA). It demonstrates manual Hibernate configuration, managing `SessionFactory`, and building a RESTful API with CRUD operations.
+
+- **student-hibernate-management**: [Hibernate with XML + c3p0 Connection Pooling Example](https://github.com/thevishalchothe/hibernate-database-management/tree/fefadc788ae06ca89b85e86a5e50d3dbbeb1e1c0/student-hibernate-management)  
+  - Simple CRUD-based Java app using **Hibernate XML configuration** (no annotations) and **c3p0 connection pooling** for efficient DB management.
 
 
 ---
