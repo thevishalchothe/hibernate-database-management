@@ -4,6 +4,8 @@ import com.killerexpertise.example.exception.StudentNotFoundException;
 import com.killerexpertise.example.model.Student;
 import com.killerexpertise.example.repository.StudentRepository;
 import com.killerexpertise.example.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +16,22 @@ import java.util.Optional;
 @Service
 public class StudentServiceImpl implements StudentService {
 
+    private static final Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
+
     @Autowired
     private StudentRepository studentRepository;
 
     @Override
     @Transactional
     public Student createStudent(Student student) {
-        System.out.println("Inside service: " + student);
+        logger.info("Creating student: {}", student);
         return studentRepository.save(student);
     }
 
     @Override
     public Student deleteStudent(int id) {
         Student deletedStudent = studentRepository.deleteById(id);
-        System.out.println("Deleted student: " + deletedStudent);
+        logger.info("Deleted student: {}", deletedStudent);
         return deletedStudent;
     }
 
@@ -35,14 +39,16 @@ public class StudentServiceImpl implements StudentService {
     public Student retrieveStudent(int id) {
         Optional<Student> retrievedStudent = studentRepository.findById(id);
         if (retrievedStudent.isEmpty()) {
-            throw new StudentNotFoundException("student not found");
+            logger.warn("Student with ID {} not found", id);
+            throw new StudentNotFoundException("Student not found");
         }
-        System.out.println("retrievedStudent : " + retrievedStudent);
+        logger.info("Retrieved student: {}", retrievedStudent.get());
         return retrievedStudent.get();
     }
 
     @Override
     public List<Student> retrieveStudents() {
+        logger.info("Retrieving all students");
         return studentRepository.findAll();
     }
 }
