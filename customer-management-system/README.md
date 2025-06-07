@@ -14,6 +14,7 @@ This is a Spring Boot application for managing customers using **manual Hibernat
 - MySQL database integration
 - Lombok for cleaner models
 - Structured into layers: Controller, Service, Repository
+- Pagination support with `page` and `size` query parameters
 
 ---
 
@@ -91,3 +92,56 @@ Alternatively, you can fetch these from `application.properties` using `@Value` 
   ```
 
   -  This creates the SessionFactory, which can now be injected into your repository layer for direct database access using Hibernate.
+
+---
+
+## Pagination Logic  ◀️ 1 2 3 ▶️
+  -  Includes safe pagination logic for retrieving data in pages.
+
+ -  CustomerController
+
+  ```
+  @RestController
+  @RequestMapping("/api/customers")
+  public class CustomerController {
+  
+      @Autowired
+      private CustomerService customerService;
+  
+      @GetMapping
+      public ResponseEntity<List<Customer>> getCustomers(
+              @RequestParam(defaultValue = "0") int page,
+              @RequestParam(defaultValue = "3") int size) {
+          List<Customer> customers = customerService.getAllCustomers(page, size);
+          return ResponseEntity.ok(customers);
+      }
+  }
+  ```
+  -  CustomerRepository
+        
+  ```
+   @Repository
+  public class CustomerRepository {
+  
+      @Autowired
+      private SessionFactory sessionFactory;
+  
+      public List<Customer> findAllPaginated(int page, int size) {
+          try (Session session = sessionFactory.openSession()) {
+              return session.createQuery("FROM Customer", Customer.class)
+                      .setFirstResult(page * size)
+                      .setMaxResults(size)
+                      .list();
+          }
+      }
+  } 
+  ```
+---
+
+## Sample Request 🧪 
+
+ ```
+ GET /api/customers?page=1&size=3
+ ```
+
+Returns 3 customers from page 1 (0-based indexing).
