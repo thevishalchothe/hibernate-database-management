@@ -12,4 +12,6 @@ public interface CustomerService {
     Customer getCustomer(Long id);
 
     void deleteCustomer(Long id);
+
+    List<Customer> getAllCustomers(int page, int size); // method for pagination
 }

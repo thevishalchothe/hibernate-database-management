@@ -13,4 +13,6 @@ public interface CustomerRepository {
     List<Customer> findAll();
 
     void deleteById(Long id);
+
+    List<Customer> findAll(int page, int size); // method for pagination
 }

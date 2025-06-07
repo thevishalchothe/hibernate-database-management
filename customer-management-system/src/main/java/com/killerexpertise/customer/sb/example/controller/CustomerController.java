@@ -2,6 +2,7 @@ package com.killerexpertise.customer.sb.example.controller;
 
 import com.killerexpertise.customer.sb.example.model.Customer;
 import com.killerexpertise.customer.sb.example.service.CustomerService;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Setter
 @RequestMapping("/api/customers")
 public class CustomerController {
 
-    private final CustomerService customerService;
-
     @Autowired
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+    private CustomerService customerService;
 
     @PostMapping("/addCustomer")
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
@@ -46,5 +44,13 @@ public class CustomerController {
     public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/getAll")   // method for pagination
+    public ResponseEntity<List<Customer>> getAllCustomers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size) {
+        List<Customer> customers = customerService.getAllCustomers(page, size);
+        return ResponseEntity.ok(customers);
     }
 }

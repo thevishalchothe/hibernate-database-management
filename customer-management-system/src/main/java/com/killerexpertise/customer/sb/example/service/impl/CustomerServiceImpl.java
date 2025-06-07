@@ -29,4 +29,9 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
     }
+
+    @Override
+    public List<Customer> getAllCustomers(int page, int size) {
+        return customerRepository.findAll(page, size);
+    }
 }
