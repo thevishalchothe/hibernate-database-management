@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.ehcache.org/v3"
+        xmlns:jsr107="http://www.ehcache.org/v3/jsr107"
+        xsi:schemaLocation="
+            http://www.ehcache.org/v3 https://www.ehcache.org/schema/ehcache-core-3.10.xsd
+            http://www.ehcache.org/v3/jsr107 https://www.ehcache.org/schema/ehcache-107-ext-3.10.xsd">
 
-    <diskStore path="java.io.tmpdir/ehcache"/>
+    <persistence directory="java.io.tmpdir/ehcache"/>
 
-    <defaultCache
-            maxEntriesLocalHeap="10000"
-            eternal="false"
-            timeToIdleSeconds="300"
-            timeToLiveSeconds="600"
-            memoryStoreEvictionPolicy="LRU"/>
+    <cache-template name="default-template">
+        <heap unit="entries">10000</heap>
+        <expiry>
+            <tti unit="seconds">300</tti>
+            <ttl unit="seconds">600</ttl>
+        </expiry>
+    </cache-template>
 
-    <cache name="products"
-           maxEntriesLocalHeap="1000"
-           eternal="false"
-           timeToIdleSeconds="300"
-           timeToLiveSeconds="600"/>
+    <!-- Cache for Product entities -->
+    <cache alias="products" uses-template="default-template">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.expertise.caching.example.model.Product</value-type>
+        <heap unit="entries">1000</heap>
+    </cache>
 
-    <cache name="org.hibernate.cache.internal.StandardQueryCache"
-           maxEntriesLocalHeap="50"
-           eternal="false"
-           timeToLiveSeconds="120"/>
+    <!-- Hibernate query cache -->
+    <cache alias="org.hibernate.cache.internal.StandardQueryCache" uses-template="default-template">
+        <heap unit="entries">50</heap>
+        <expiry>
+            <ttl unit="seconds">120</ttl>
+        </expiry>
+    </cache>
 
-    <cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
-           maxEntriesLocalHeap="5000"
-           eternal="true"/>
-</ehcache>
+    <!-- Hibernate timestamps cache -->
+    <cache alias="org.hibernate.cache.spi.UpdateTimestampsCache">
+        <heap unit="entries">5000</heap>
+        <expiry>
+            <none/>
+        </expiry>
+    </cache>
+</config>

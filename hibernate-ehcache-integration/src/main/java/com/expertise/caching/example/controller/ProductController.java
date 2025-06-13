@@ -1,6 +1,5 @@
 package com.expertise.caching.example.controller;
 
-
 import com.expertise.caching.example.model.Product;
 import com.expertise.caching.example.service.ProductService;
 import org.springframework.http.ResponseEntity;
